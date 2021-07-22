@@ -1,0 +1,19 @@
+{
+  "name": "Respostas rápidas",
+  "description": "Respostas rápidas para usar no WhatsApp Web",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "settings.html",
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["quickanswers.js"],
+      "css": ["dialog.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": ["storage"]
+}

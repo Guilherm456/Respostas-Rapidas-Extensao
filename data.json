@@ -1,0 +1,89 @@
+[
+  {
+    "title": "Forma de pagamento",
+    "short": "formapagamento",
+    "phrases": [
+      "Qual será a forma de pagamento?",
+      "Como vai ser pago?",
+      "Qual vai ser a forma de pagamento? 😁",
+      "Qual será a forma de pagamento? 😄",
+      "O pagamento será no dinheiro/cartão/PIX?"
+    ]
+  },
+  {
+    "title": "PIX",
+    "short": "chave",
+    "phrases": [""]
+  },
+  {
+    "title": "Qual seu endereço",
+    "short": "endereco",
+    "phrases": [
+      "Qual é seu endereço?",
+      "Qual seria o seu endereço?",
+      "Qual seu endereço, por favor?",
+      "Qual é o seu endereço, por favor?",
+      "Poderia me dizer seu endereço, por favor? 😁"
+    ]
+  },
+  {
+    "title": "Taxas de entrega",
+    "short": "taxa",
+    "phrases": [
+      "Vila Gaúcha e Boa Vista: R$2.00\nHigienópolis, São Francisco e Primavera: R$4.00\nOutros bairros: R$3.00\n\nFora da região urbana: R$5.00 (podendo sofrer variação dependendo da região)",
+      "🏍 *TAXAS DE ENTREGA* 🏍\n\n◼Vila Gaúcha e Boa Vista: R$2.00\n◼São Francisco, Primavera e Higienópolis: R$4.00\n◼Centro e outros bairros não listados acima: R$3.00\n\n◼Interior ou fora de Marechal: R$5.00 (podendo sofrer variação dependendo da distância)"
+    ]
+  },
+  {
+    "title": "Débito ou crédito?",
+    "short": "cartaoinf",
+    "phrases": [
+      "Será pagamento no débito ou crédito?",
+      "O pagamento será feito no débito ou crédito?",
+      "Débito ou crédito?",
+      "Vai ser no débito ou crédito?",
+      "Vai ser no crédito ou débito?",
+      "Será pago no crédito ou débito?"
+    ]
+  },
+  {
+    "title": "Entrega/Retirada",
+    "short": "retiradaentrega",
+    "phrases": [
+      "Será entrega ou retirada?",
+      "Irá retirar ou deseja que entreguemos?",
+      "Entrega ou retirada?",
+      "Será entrega ou retirada? 😁"
+    ]
+  },
+  {
+    "title": "Troco",
+    "short": "troco",
+    "phrases": [
+      "Vai precisar de troco?",
+      "Será necessário troco?",
+      "Vai precisar de troco? 😁",
+      "Precisa de troco?"
+    ]
+  },
+  {
+    "title": "Ver cardápio",
+    "short": "vercardapio",
+    "phrases": [
+      "Deseja dar uma olhada no cardápio?",
+      "Quer ver o cardápio?",
+      "Quer dar uma olhada no cardápio?",
+      "Deseja o cardápio?"
+    ]
+  },
+  {
+    "title": "Sabores",
+    "short": "sabores",
+    "phrases": [
+      "Claro! Quais sabores você deseja?",
+      "Beleza, quais sabores você deseja?",
+      "Quais sabores você deseja? 😁",
+      "Claro! Quais sabores você deseja? 😀"
+    ]
+  }
+]
