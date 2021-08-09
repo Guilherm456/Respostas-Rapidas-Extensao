@@ -23,23 +23,21 @@
   max-height: 250px;
   overflow: auto;
 }
+.resp.focus{
+	background-color: #151e23;
+}
 
-.resp {
-  padding: 0 20px;
-
-  height: 45px;
-
+.resp.visible{
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.resp:not(:last-child) {
-  border-bottom: 1px solid;
-}
+.resp {
+  display: none;
+  padding: 0 20px;
 
-.resp:focus-within {
-  background-color: #151e23;
+  height: 45px;
 }
 
 .resp .strongResp {

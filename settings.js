@@ -241,11 +241,11 @@ function edit_short(index) {
   element.querySelector('.short').innerHTML = `
   <div class="div_input">
     <label for="name">Nome da resposta</label>
-    <input id="name" name="name" minlength="4" maxlength="20" type="text" value="${short_data[index].title}" required/>
+    <input id="name" name="name" minlength="2" maxlength="30" type="text" value="${short_data[index].title}" required/>
   </div>
   <div class="div_input">
     <label for="short">Atalho da resposta</label>
-    <input id="short" name="short" minlength="4" maxlength="20" type="text" value="${short_data[index].short}" required/>
+    <input id="short" name="short" minlength="2" maxlength="20" type="text" value="${short_data[index].short}" required/>
   </div>
   <div class="phrases_short">`;
 
