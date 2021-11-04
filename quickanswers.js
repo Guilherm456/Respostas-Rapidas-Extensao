@@ -1,30 +1,21 @@
 window.onload = () => {
   chrome.runtime.sendMessage({ message: 'get_prefferences' }, (response) => {
-    get_prefferences(response);
+    return Promise.resolve((prefferences = response));
   });
 
   chrome.runtime.sendMessage({ message: 'get_short' }, (response) => {
-    get_short(response);
+    return Promise.resolve(
+      (short_data = response),
+      (short_cache = short_data),
+      short_cache.map((short) => {
+        short.short = ('/' + short.short).toLocaleLowerCase();
+      })
+    );
   });
 
   //verifica se foi aberto um chat
   document.addEventListener('click', clicado);
 };
-
-//obtem as preferencias do usuario
-function get_prefferences(response) {
-  prefferences = response;
-}
-
-function get_short(response) {
-  short_data = response;
-
-  //é criado uma espécie de cache, para não precisar fazer o lower case todas as vezes
-  short_cache = short_data;
-  short_cache.map((short) => {
-    short.short = ('/' + short.short).toLocaleLowerCase();
-  });
-}
 
 //deleta o popup
 function delete_elem() {
@@ -74,6 +65,7 @@ function start_interface() {
 
   element.innerHTML += div_fi;
   childrens = document.querySelectorAll('.resp');
+  if (childrens.length == 0) return;
   childrens.forEach(function (element, index) {
     element.addEventListener('click', () => {
       sendMessageInput(index);
