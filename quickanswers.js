@@ -3,6 +3,10 @@ window.onload = () => {
     get_prefferences(response);
   });
 
+  chrome.runtime.sendMessage({ message: 'get_short' }, (response) => {
+    get_short(response);
+  });
+
   //verifica se foi aberto um chat
   document.addEventListener('click', clicado);
 };
@@ -10,6 +14,16 @@ window.onload = () => {
 //obtem as preferencias do usuario
 function get_prefferences(response) {
   prefferences = response;
+}
+
+function get_short(response) {
+  short_data = response;
+
+  //é criado uma espécie de cache, para não precisar fazer o lower case todas as vezes
+  short_cache = short_data;
+  short_cache.map((short) => {
+    short.short = ('/' + short.short).toLocaleLowerCase();
+  });
 }
 
 //deleta o popup
@@ -44,20 +58,12 @@ function sendMessageInput(i) {
 
 //inicializa o 'popup' para mostrar os atalhos
 function start_interface() {
+  if (!short_data) return;
   //cria uma div
   element = document.createElement('div');
   element.id = 'dialogpopup'; //define seu id
   document.querySelector('footer').appendChild(element); //coloca como filha do footer (onde está o 'input')
 
-  chrome.runtime.sendMessage({ message: 'get_short' }, (response) => {
-    get_data(response);
-  });
-}
-
-//cria o popup e obtem os atalhos
-function get_data(response) {
-  if (!response) return;
-  short_data = response;
   var div_fi = "<div class='div_pop'><div class='pop_list'>";
 
   for (i = 0; i < short_data.length; i++) {
@@ -99,20 +105,13 @@ function get_data(response) {
 
 //compara o que foi escrito pelo usuário com os atalhos e exibe apenas os coincidentes
 function compare() {
-  let similar;
-  for (i = 0; i < short_data.length; i++) {
-    similar = true;
+  phrase_user = phrase_user.toLocaleLowerCase();
 
-    for (y = 0; y < phrase_user.length - 1; y++) {
-      if (phrase_user[y + 1] != short_data[i].short[y]) {
-        similar = false;
-        break;
-      }
-    }
-
-    if (!similar) {
+  short_cache.forEach;
+  for (let i in short_cache) {
+    if (!short_cache[i].short.includes(phrase_user))
       childrens[i].classList.remove('visible');
-    } else if (!childrens[i].classList.contains('visible'))
+    else if (!childrens[i].classList.contains('visible'))
       childrens[i].classList.add('visible');
   }
 
@@ -213,6 +212,7 @@ function clicado() {
 
 var element,
   short_data,
+  short_cache,
   area_text,
   phrase_user = '',
   position = null,
