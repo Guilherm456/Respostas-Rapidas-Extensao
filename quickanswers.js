@@ -8,7 +8,7 @@ window.onload = () => {
       (short_data = response),
       (short_cache = short_data),
       short_cache.map((short) => {
-        short.short = ('/' + short.short).toLocaleLowerCase();
+        short.short = (prefferences.key + short.short).toLocaleLowerCase();
       })
     );
   });
