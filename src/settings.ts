@@ -120,10 +120,6 @@ function save_data() {
   };
   phrases.forEach((element, index) => {
     new_short.phrases[index] = element.value; //adiciona a frase atual ao novo atalho
-    new_short.phrases[index] = new_short.phrases[index].replaceAll(
-      /\\n/g,
-      '\\n'
-    ); //salva as quebras de linhas
   });
 
   //procura elementos repetidos
@@ -235,9 +231,7 @@ function create_input(element, index, cont) {
   element
     .querySelector(`textarea#phrase${index}`)
     .addEventListener('change', (event: Event) => {
-      (<HTMLInputElement>event.target).innerHTML = (<HTMLInputElement>(
-        event.target
-      )).value;
+      this.innerHTML = this.value;
     });
 }
 
