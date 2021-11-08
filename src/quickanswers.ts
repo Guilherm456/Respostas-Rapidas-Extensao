@@ -1,3 +1,5 @@
+import { Shorts, Prefferences } from './Types';
+
 window.onload = () => {
   chrome.runtime.sendMessage({ message: 'get_prefferences' }, (response) => {
     return Promise.resolve((prefferences = response));
@@ -5,11 +7,11 @@ window.onload = () => {
 
   chrome.runtime.sendMessage({ message: 'get_short' }, (response) => {
     return Promise.resolve(
-      (short_data = response),
+      ((short_data = response),
       (short_cache = short_data),
       short_cache.map((short) => {
         short.short = (prefferences.key + short.short).toLocaleLowerCase();
-      })
+      }))
     );
   });
 
@@ -29,9 +31,10 @@ function delete_elem() {
 
 //responsável por adicionar o texto ao input
 function sendMessageInput(i) {
-  window.InputEvent = window.Event || window.InputEvent;
+  // window.InputEvent = window.Event || window.InputEvent;
+  window.InputEvent = window.InputEvent;
   var event = new InputEvent('input', { bubbles: true });
-  var textselected = short_data[i].phrases;
+  var textselected: string | string[] = short_data[i].phrases;
 
   if (textselected.length > 0) {
     textselected =
@@ -57,7 +60,7 @@ function start_interface() {
 
   var div_fi = "<div class='div_pop'><div class='pop_list'>";
 
-  for (i = 0; i < short_data.length; i++) {
+  for (let i = 0; i < short_data.length; i++) {
     //cria a div
     div_fi += `<div class="resp visible" data="${i}"><span class="strongResp">${short_data[i].title}</span><div><span class="shortResp">${short_data[i].short}</span></div></div>`;
   }
@@ -99,7 +102,6 @@ function start_interface() {
 function compare() {
   phrase_user = phrase_user.toLocaleLowerCase();
 
-  short_cache.forEach;
   for (let i in short_cache) {
     if (!short_cache[i].short.includes(phrase_user))
       childrens[i].classList.remove('visible');
@@ -117,7 +119,11 @@ function compare() {
 }
 
 //responsável pela navegação usando a seta do teclado
-function navigate_short(actual_index, new_index, option) {
+function navigate_short(
+  actual_index: number,
+  new_index: number,
+  option?: boolean
+) {
   if (new_index >= 0 && new_index < childrens.length) {
     childrens[actual_index].classList.remove('focus');
 
@@ -137,7 +143,7 @@ function navigate_short(actual_index, new_index, option) {
 }
 
 //gerencia a navegação do usuário nos atalhos
-function listen_navigate_short() {
+function listen_navigate_short(event: KeyboardEvent) {
   if (event.key == 'Enter') {
     if (
       position !== null &&
@@ -158,7 +164,7 @@ function listen_navigate_short() {
   }
 }
 
-function listen() {
+function listen(event: KeyboardEvent) {
   //verifica se o usuário clicou a tecla do atalho
   if (event.key == prefferences.key) {
     //caso não tenha nenhuma posição no momento, significa que está ativando a extensão
@@ -203,11 +209,11 @@ function clicado() {
 }
 
 var element,
-  short_data,
-  short_cache,
+  short_data: Shorts,
+  short_cache: Shorts,
   area_text,
-  phrase_user = '',
+  phrase_user: string = '',
   position = null,
   childrens,
-  prefferences,
-  actual_short;
+  prefferences: Prefferences,
+  actual_short: number;

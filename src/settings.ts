@@ -64,18 +64,19 @@ function start_interface(data) {
 }
 
 function prefferences() {
-  const elem_keyword = document.querySelector('input#keyword_short');
+  const elem_keyword: HTMLInputElement = document.querySelector(
+    'input#keyword_short'
+  );
 
-  elem_keyword.addEventListener('keydown', () => {
-    if (event.key.length == 1) {
-      event.target.value = event.key;
+  elem_keyword.addEventListener('keydown', (event: Event): void => {
+    if ((<KeyboardEvent>event).key.length == 1) {
+      (<HTMLInputElement>event.target).value = (<KeyboardEvent>event).key;
     }
-    if (event.key === 'Enter') {
-      console.log(event.target.value);
+    if ((<KeyboardEvent>event).key === 'Enter') {
       chrome.runtime.sendMessage(
         {
           message: 'set_prefferences',
-          payload: { key: event.target.value },
+          payload: { key: (<HTMLInputElement>event.target).value },
         },
         (response) => {
           if (response.message === 'success') {
@@ -119,12 +120,15 @@ function save_data() {
   };
   phrases.forEach((element, index) => {
     new_short.phrases[index] = element.value; //adiciona a frase atual ao novo atalho
-    new_short.phrases[index].replaceAll(/\\n/g, '\\n'); //salva as quebras de linhas
+    new_short.phrases[index] = new_short.phrases[index].replaceAll(
+      /\\n/g,
+      '\\n'
+    ); //salva as quebras de linhas
   });
 
   //procura elementos repetidos
   if (short_data)
-    for (i = 0; i < short_data.length; i++) {
+    for (let i = 0; i < short_data.length; i++) {
       if (
         new_short.short.localeCompare(short_data[i].short, 'pt-BR', {
           sensitivity: 'base',
@@ -162,7 +166,7 @@ function save_edited_data(index) {
   });
 
   //procura uma frase igual e verifica se não é a mesma que a posição atual
-  for (i = 0; i < short_data.length; i++) {
+  for (let i = 0; i < short_data.length; i++) {
     if (
       new_short.short.localeCompare(short_data[i].short, 'pt-BR', {
         sensitivity: 'base',
@@ -230,8 +234,10 @@ function create_input(element, index, cont) {
   //responsável por salvar os dados
   element
     .querySelector(`textarea#phrase${index}`)
-    .addEventListener('change', () => {
-      event.target.innerHTML = event.target.value;
+    .addEventListener('change', (event: Event) => {
+      (<HTMLInputElement>event.target).innerHTML = (<HTMLInputElement>(
+        event.target
+      )).value;
     });
 }
 

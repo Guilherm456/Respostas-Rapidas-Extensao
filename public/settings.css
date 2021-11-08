@@ -120,7 +120,8 @@ body {
 }
 
 span,
-label {
+label,
+p {
   color: var(--span-color);
   font-size: 0.875rem;
 }
